@@ -1,18 +1,18 @@
 # AI_Object_detection_yolov8
-DETECTION OF OBJECT USING AI (YOLOV8_ULTRALYTICS)
+**DETECTION OF OBJECT USING AI (YOLOV8_ULTRALYTICS)**
 
-prerequisite:
-Hardware:
+**prerequisite:**
+**Hardware:**
 Nvidia Jetson orin developer kit(recomputerj4012)
 Raspberry-pi camera (CSI or USB camera)
-Software:
+**Software:**
 Roboflow - DataSet
 Ultralytics - Model
 
 
-SETUP FOR NVIDIA JETSON ORIN DEVELOPER KIT
+**SETUP FOR NVIDIA JETSON ORIN DEVELOPER KIT**
 
-1.2. NVIDIA SDK Manager
+**1.2. NVIDIA SDK Manager**
 
 https://developer.nvidia.com/sdk-manager
     • NVIDIA Jetson Orin Nano Developer Kit
@@ -34,7 +34,7 @@ sudo apt dist-upgrade
 sudo apt install --fix-broken -o Dpkg::Options::="--force-overwrite"
 
 
-Install DeepStream :
+**Install DeepStream :**
 If you install DeepStream using SDK manager, you need to execute the below commands which are additional dependencies for DeepStream, after the system boots up
 sudo apt install \
 libssl1.1 \
@@ -65,8 +65,8 @@ vi requirements.txt
 
 Step 4. Edit the following lines. Here you need to press i first to enter editing mode. Press ESC, then type :wq to save and quit
 
-# torch>=1.7.0
-# torchvision>=0.8.1
+ torch>=1.7.0
+ torchvision>=0.8.1
 
 Step 5. Install the necessary packages
 
@@ -75,7 +75,7 @@ pip3 install -r requirements.txt
 If the installer complains about outdated python-dateutil package, upgrade it by
 pip3 install python-dateutil --upgrade
 
-Install PyTorch and Torchvision : 
+**Install PyTorch and Torchvision :** 
 
 PyTorch v1.11.0
 Supported by JetPack 5.0 (L4T R34.1.0) / JetPack 5.0.1 (L4T R34.1.1) / JetPack 5.0.2 (L4T R35.1.0) with Python 3.8
@@ -104,13 +104,40 @@ Here is a list of the corresponding torchvision versions that you need to instal
     • PyTorch v1.11 - torchvision v0.12.0
     • PyTorch v1.12 - torchvision v0.13.0
 
-Training model using Roboflow :
+**recompute Industrial J40, J30 Hardware and Interfaces CSI Cameras**
+recompute Industrial is equipped with 2x 2-lane 15pin MIPI CSI camera connectors and the below cameras are supported
+    • IMX219 cameras
+    • IMX477 cameras
+Connection Overview
+Here the 2 CSI camera connectors are marked as CAM0 and CAM1. You can either connect one camera to any connector out of the 2 or connect 2 cameras to both connectors at the same time.
+    • Step 1: Gently pull out the black color lock on the CSI connector
+    • Step 2: Insert the 15-pin ribbon cable into the connector making sure the gold fingers are facing downwards
+    • Step 3: Push in the black color lock to lock the ribbon cable in place
+
+Usage:
+First, you need to configure the board to load the appropriate driver for the specific camera that you will be using. For this JetPack system has an in-built tool to support IMX219 and IMX477 cameras.
+    • Step 1: Open the terminal and execute the following
+      sudo /opt/nvidia/jetson-io/jetson-io.py
+    • Step 2: Select Configure Jetson Nano CSI Connector
+    • Step 3: Select Configure for compatible hardware
+    • Step 4: Select the camera that you want to use
+    • Step 5: Select Save pin changes
+    • Step 6: Select Save and reboot to reconfigure pins
+    • Step 7: Press any key on the keyboard and the device will reboot with the applied camera configuration
+      
+    • Method 1:
+For CAM0 port :
+nvgstcapture-1.0 sensor-id=0 
+    • Method 2:
+For CAM0 port :
+gst-launch-1.0 nvarguscamerasrc sensor-id=0 sensor-mode=0 ! 'video/x-raw(memory:NVMM),width=1920, height=1080, framerate=20/1, format=NV12' ! nvvidconv ! Xvimagesink
+
+**Training model using Roboflow :**
 
 https://wiki.seeedstudio.com/YOLOv5-Object-Detection-Jetson/#annotate-dataset-using-roboflow
 
-ROBOFLOW – DATASET
-
-ROBOFLOW :
+**ROBOFLOW – DATASET**
+**ROBOFLOW :**
 			  Roboflow is a computer vision platform that allows users to build computer vision models faster and more accurately through the provision of better data collection, preprocessing, and model training techniques.
 
 STEP 1: Create Project – Dataset
@@ -133,12 +160,12 @@ STEP 6 (b): Finally dataset is ready for deployment in Ultralytics to create the
 
 
 
-ULTRALYTICS – MODEL
+**ULTRALYTICS – MODEL**
 
-ULTRALYTICS :
+**ULTRALYTICS :**
 				Ultralytics YOLOv8 is a cutting-edge, state-of-the-art (SOTA) model that builds upon the success of previous YOLO versions and introduces new features and improvements to further boost performance and flexibility.
 
-				 Ultralytics YOLOv8 provides a unified framework for training models for performing object detection, instance segmentation, and image classification. This means that users can use a single model for all three tasks, simplifying the training process
+Ultralytics YOLOv8 provides a unified framework for training models for performing object detection, instance segmentation, and image classification. This means that users can use a single model for all three tasks, simplifying the training process
 
 STEP 1:  Create the link between Roboflow with Ultralytics using 
 API key provided in the Roboflow, Copy the API key and paste it into the Ultralytics Setting -> Integrations -> Add API key. It creates a linked workplace in Ultralytics.
@@ -148,7 +175,7 @@ Then, start the training process by clicking on Train Model.
 
 
 
-GOOGLE CO-LAB – MODEL RUNTIME
+**GOOGLE CO-LAB – MODEL RUNTIME**
 
 STEP 4 (a): Copy the code, from the last steps and paste it on the google co-lab and run the code.
 STEP 4 (b): Below output shows, that the model is successfully
@@ -157,7 +184,7 @@ trained and ready for deployment.
 STEP 5: After the code is running, the Model is deployed successfully in Ultralytics 
 STEP 6: Test the model using the images.
 
-DeepStream Configuration for YOLOv8 :
+**DeepStream Configuration for YOLOv8 :**
 
 Step 1. Clone the following repo
 cd ~
@@ -211,7 +238,7 @@ Step 10. Change the video source in deepstream_app_config.txt file. Here a defau
 ...
 uri=file://home/nvidia/DeepStream-Yolo/(video_name)basana.mp4
 
-Run the Inference :
+**Run the Inference :**
 deepstream-app -c deepstream_app_config.txt
 
  

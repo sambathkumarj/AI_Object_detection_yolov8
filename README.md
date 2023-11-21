@@ -10,9 +10,9 @@ Roboflow - DataSet
 Ultralytics - Model
 
 
-                           SETUP FOR NVIDIA JETSON ORIN DEVELOPER KIT
-                           
-                                  1.2. NVIDIA SDK Manager
+SETUP FOR NVIDIA JETSON ORIN DEVELOPER KIT
+
+1.2. NVIDIA SDK Manager
 
 https://developer.nvidia.com/sdk-manager
     • NVIDIA Jetson Orin Nano Developer Kit
@@ -52,9 +52,9 @@ Install Necessary Packages :
 
 Step 1. Access the terminal of Jetson device, install pip and upgrade it
 
-sudo apt update
-sudo apt install -y python3-pip
-pip3 install --upgrade pip
+      sudo apt update
+      sudo apt install -y python3-pip
+      pip3 install --upgrade pip
 
 Step 2. Clone the following repo
 git clone https://github.com/ultralytics/ultralytics.git
@@ -104,11 +104,11 @@ Here is a list of the corresponding torchvision versions that you need to instal
     • PyTorch v1.11 - torchvision v0.12.0
     • PyTorch v1.12 - torchvision v0.13.0
 
-                            Training model using Roboflow :
+Training model using Roboflow :
 
 https://wiki.seeedstudio.com/YOLOv5-Object-Detection-Jetson/#annotate-dataset-using-roboflow
 
-                                 ROBOFLOW – DATASET
+ROBOFLOW – DATASET
 
 ROBOFLOW :
 			  Roboflow is a computer vision platform that allows users to build computer vision models faster and more accurately through the provision of better data collection, preprocessing, and model training techniques.
@@ -131,7 +131,9 @@ STEP 6 (a): You can view and verify the  train_set, Valid_set, and test_set in t
 
 STEP 6 (b): Finally dataset is ready for deployment in Ultralytics to create the model. 
 
-                                     ULTRALYTICS – MODEL
+
+
+ULTRALYTICS – MODEL
 
 ULTRALYTICS :
 				Ultralytics YOLOv8 is a cutting-edge, state-of-the-art (SOTA) model that builds upon the success of previous YOLO versions and introduces new features and improvements to further boost performance and flexibility.
@@ -145,7 +147,8 @@ STEP 3: While uploading the datasets, you want to select any one of the model fo
 Then, start the training process by clicking on Train Model.
 
 
-                                 GOOGLE CO-LAB – MODEL RUNTIME
+
+GOOGLE CO-LAB – MODEL RUNTIME
 
 STEP 4 (a): Copy the code, from the last steps and paste it on the google co-lab and run the code.
 STEP 4 (b): Below output shows, that the model is successfully
@@ -154,7 +157,7 @@ trained and ready for deployment.
 STEP 5: After the code is running, the Model is deployed successfully in Ultralytics 
 STEP 6: Test the model using the images.
 
-                              DeepStream Configuration for YOLOv8 :
+DeepStream Configuration for YOLOv8 :
 
 Step 1. Clone the following repo
 cd ~
